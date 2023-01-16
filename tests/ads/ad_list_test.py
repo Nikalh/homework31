@@ -5,7 +5,7 @@ from tests.factories import AdFactory
 
 
 @pytest.mark.django_db
-def ads_list_test(client, access_token):
+def test_ads_list(client, access_token):
     ad_list = AdFactory.create_batch(5)
 
     response = client.get("/ad/",HTTP_AUTHORIZATION="Bearer " + access_token)

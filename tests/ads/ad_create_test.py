@@ -1,12 +1,13 @@
 import pytest
 
+
 @pytest.mark.django_db
-def ad_create_test(client, access_token,user, category):
+def test_ad_create(client, access_token, user, category):
     data = {
         "author": user.pk,
         "category": category.pk,
-        "name": "СТол",
-        "price": 1000,
+        "name": "Стол из слэба",
+        "price": 28500,
         "description": ""
     }
 
@@ -20,6 +21,6 @@ def ad_create_test(client, access_token,user, category):
         "author": user.pk,
         "category": category.pk
     }
-    response = client.post("/ad/", data, HTTP_AUTORIZATION="Bearer " + access_token)
+    response = client.post("/ad/", data, HTTP_AUTHORIZATION="Bearer " + access_token)
     assert response.status_code == 201
     assert response.data == expected_data
