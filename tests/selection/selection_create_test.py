@@ -9,12 +9,13 @@ def test_selection_create(client, access_token):
 
     data = {
         "name": "Моя подборка",
+        "owner": "test",
         "items": [ad.pk for ad in ad_list]
     }
     expected_data = {
         "id": 1,
         "name": "Моя подборка",
-        "owner": "test_user",
+        "owner": "test",
         "items": [ad.pk for ad in ad_list]
     }
     response = client.post("/selection/", data, HTTP_AUTHORIZATION="Bearer " + access_token)
